@@ -13,14 +13,14 @@ const Update = () => {
 
   const [updateData, setUpdateData] = useState();
 
-  const { users, loading } = useSelector((state) => state.app);
+  const { users } = useSelector((state) => state.app);
 
   useEffect(() => {
     if (id) {
       const singleUser = users.filter((ele) => ele.id === id);
       setUpdateData(singleUser[0]);
     }
-  }, [dispatch]);
+  }, [dispatch, id, users]);
 
   const newData = (e) => {
     setUpdateData({ ...updateData, [e.target.name]: e.target.value });

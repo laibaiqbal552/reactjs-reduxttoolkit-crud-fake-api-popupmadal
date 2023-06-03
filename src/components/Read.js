@@ -10,7 +10,7 @@ import { FaWindowClose } from "react-icons/fa";
 const Read = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.app);
+  // const state = useSelector((state) => state.app);
   const { users, loading } = useSelector((state) => state.app);
   console.log("State", state);
   const HandleDelete = (r) => {
@@ -19,7 +19,6 @@ const Read = () => {
   };
   useEffect(() => {
     dispatch(showUser());
-    console.log("log", state.todo);
   }, [dispatch]);
   if (loading) {
     return <h2>Loading</h2>;
