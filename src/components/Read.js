@@ -12,7 +12,7 @@ const Read = () => {
   const dispatch = useDispatch();
   // const state = useSelector((state) => state.app);
   const { users, loading } = useSelector((state) => state.app);
-  console.log("State", state);
+
   const HandleDelete = (r) => {
     dispatch(deleteUser(r));
     setShowDeleteModal(true);
