@@ -20,7 +20,7 @@ const Update = () => {
       const singleUser = users.filter((ele) => ele.id === id);
       setUpdateData(singleUser[0]);
     }
-  }, []);
+  }, [dispatch]);
 
   const newData = (e) => {
     setUpdateData({ ...updateData, [e.target.name]: e.target.value });
