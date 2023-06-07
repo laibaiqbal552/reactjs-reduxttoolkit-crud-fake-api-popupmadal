@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 
 import { FaWindowClose } from "react-icons/fa";
+import Spinner from "./Spinner";
 const Read = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const Read = () => {
     dispatch(showUser());
   }, [dispatch]);
   if (loading) {
-    return <h2>Loading</h2>;
+    return <Spinner />;
   }
   const closeDeleteModal = () => setShowDeleteModal(false);
   return (
@@ -63,6 +64,12 @@ const Read = () => {
                         >
                           age
                         </th>
+                        <th
+                          scope="col"
+                          className="px-3 py-3.5 text-left text-sm font-semibold text-white"
+                        >
+                          gender
+                        </th>
 
                         <th
                           scope="col"
@@ -88,6 +95,9 @@ const Read = () => {
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
                               {e.age}
                             </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                              {e.gender}
+                            </td>
 
                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                               <div className="text-indigo-400 hover:text-indigo-300">
@@ -106,15 +116,15 @@ const Read = () => {
                               >
                                 Delete
                               </Link>
-                              <DeleteConfirmationModal
-                                isOpen={showDeleteModal}
-                                onCancel={closeDeleteModal}
-                              />
                             </td>
                           </tr>
                         ))}
                     </tbody>
                   </table>
+                  <DeleteConfirmationModal
+                    isOpen={showDeleteModal}
+                    onCancel={closeDeleteModal}
+                  />
                 </div>
               </div>
             </div>
@@ -131,12 +141,12 @@ const DeleteConfirmationModal = ({ isOpen, onCancel }) => {
       isOpen={isOpen}
       onRequestClose={onCancel}
       contentLabel="Delete Confirmation Popup"
-      className="max-w-[500px] w-full bg-white relative border-gray-500 border rounded-md m-auto h-[400px] mt-28 p-6 rounded-md"
+      className="max-w-[500px] w-full bg-white relative m-auto h-[400px] mt-28 p-6 rounded-md"
     >
       <button onClick={onCancel} className="absolute right-6">
         <FaWindowClose className="text-2xl" />
       </button>
-      <h2 className="flex text-red-900 text-2xl font-bold justify-center items-center h-full">
+      <h2 className="flex capitalize text-indigo-900 text-2xl font-bold justify-center items-center h-full">
         one item deleted?
       </h2>
     </Modal>

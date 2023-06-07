@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../features/userDetailSlice";
 import Modal from "react-modal";
 import { FaWindowClose } from "react-icons/fa";
+import Spinner from "./Spinner";
+import { useNavigate } from "react-router-dom";
 const Create = () => {
   const [users, setUsers] = useState({});
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading } = useSelector((state) => state.app);
   const getUserData = (e) => {
     setUsers({ ...users, [e.target.name]: e.target.value });
   };
@@ -15,8 +19,12 @@ const Create = () => {
     console.log(users, "users");
     dispatch(createUser(users));
     setModalOpen(true);
+    navigate("/read");
   };
   const closeModal = () => setModalOpen(false);
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div className="bg-gray-900  min-h-screen flex flex-col justify-center px-6 py-12 lg:px-8">
       <div className="max-w-4xl w-full mx-auto px-5 py-12">
@@ -145,7 +153,7 @@ const PopupModal = ({ isOpen, onClose }) => {
         <FaWindowClose className="text-2xl" />
       </button>
 
-      <h2 className="flex text-green-900 text-2xl font-bold justify-center items-center h-full">
+      <h2 className="flex text-indigo-900 text-2xl font-bold justify-center items-center h-full">
         Data Posted Successfully!
       </h2>
     </Modal>

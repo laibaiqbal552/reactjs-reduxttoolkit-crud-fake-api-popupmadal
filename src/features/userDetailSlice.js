@@ -1,87 +1,64 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-//create action
+// Create action
 export const createUser = createAsyncThunk(
   "createUser",
   async (data, { rejectWithValue }) => {
-    console.log("data", data);
-    const response = await fetch(
-      "https://641dd63d945125fff3d75742.mockapi.io/crud",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
-
     try {
-      const result = await response.json();
-      return result;
+      const response = await axios.post(
+        "https://641dd63d945125fff3d75742.mockapi.io/crud",
+        data
+      );
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
-//read action
+// Read action
 export const showUser = createAsyncThunk(
   "showUser",
   async (args, { rejectWithValue }) => {
-    const response = await fetch(
-      "https://641dd63d945125fff3d75742.mockapi.io/crud"
-    );
-
     try {
-      const result = await response.json();
-      console.log(result);
-      return result;
+      const response = await axios.get(
+        "https://641dd63d945125fff3d75742.mockapi.io/crud"
+      );
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
-//delete action
+
+// Delete action
 export const deleteUser = createAsyncThunk(
   "deleteUser",
   async (id, { rejectWithValue }) => {
-    const response = await fetch(
-      `https://641dd63d945125fff3d75742.mockapi.io/crud/${id}`,
-      { method: "DELETE" }
-    );
-
     try {
-      const result = await response.json();
-      console.log(result);
-      return result;
+      const response = await axios.delete(
+        `https://641dd63d945125fff3d75742.mockapi.io/crud/${id}`
+      );
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
-//update action
+// Update action
 export const updateUser = createAsyncThunk(
   "updateUser",
   async (data, { rejectWithValue }) => {
-    console.log("updated data", data);
-    const response = await fetch(
-      `https://641dd63d945125fff3d75742.mockapi.io/crud/${data.id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
-
     try {
-      const result = await response.json();
-      return result;
+      const response = await axios.put(
+        `https://641dd63d945125fff3d75742.mockapi.io/crud/${data.id}`,
+        data
+      );
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -157,6 +134,6 @@ export const userDetail = createSlice({
   },
 });
 
-export default userDetail.reducer;
-
 export const { searchUser } = userDetail.actions;
+
+export default userDetail.reducer;
