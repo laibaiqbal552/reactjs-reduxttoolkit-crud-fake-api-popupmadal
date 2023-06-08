@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../features/userDetailSlice";
 import Modal from "react-modal";
 import { FaWindowClose } from "react-icons/fa";
-import { Oval } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import { validationSchema } from "./validationSchema";
 import Form from "./Form";
 
 const Create = () => {
@@ -20,7 +17,7 @@ const Create = () => {
   const handleCreate = (values) => {
     console.log(values);
     dispatch(createUser(values));
-    setModalOpen(true);
+    // setModalOpen(true);
     setTimeout(() => {
       navigate("/read");
     }, 3000);

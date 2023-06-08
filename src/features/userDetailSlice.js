@@ -6,12 +6,15 @@ export const createUser = createAsyncThunk(
   "createUser",
   async (data, { rejectWithValue }) => {
     try {
+      console.log(data, "data");
       const response = await axios.post(
-        "https://641dd63d945125fff3d75742.mockapi.io/crud",
+        "http://localhost:1337/api/employees",
         data
       );
+      console.log(response.data, "response.data");
       return response.data;
     } catch (error) {
+      console.log(error, "error");
       return rejectWithValue(error.response.data);
     }
   }
@@ -22,10 +25,9 @@ export const showUser = createAsyncThunk(
   "showUser",
   async (args, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "https://641dd63d945125fff3d75742.mockapi.io/crud"
-      );
-      return response.data;
+      const response = await axios.get("http://localhost:1337/api/employees");
+      console.log(response.data.data, "data");
+      return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -38,7 +40,7 @@ export const deleteUser = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await axios.delete(
-        `https://641dd63d945125fff3d75742.mockapi.io/crud/${id}`
+        `http://localhost:1337/api/employees/${id}`
       );
       return response.data;
     } catch (error) {
@@ -52,16 +54,13 @@ export const updateUser = createAsyncThunk(
   "updateUser",
   async (data, { rejectWithValue }) => {
     try {
-      console.log(data, "data");
       const response = await axios.put(
-        `https://641dd63d945125fff3d75742.mockapi.io/crud/${data.id}`,
+        `http://localhost:1337/api/employees/${data.id}`,
         data
       );
 
-      console.log(response.data, "response.data");
       return response.data;
     } catch (error) {
-      console.log(error, "error");
       return rejectWithValue(error.response.data);
     }
   }

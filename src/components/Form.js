@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Oval } from "react-loader-spinner";
 import { useFormik } from "formik";
-import { validationSchema } from "./validationSchema";
+import { validationSchema } from "./../validationSchema";
 const Form = ({ loading, initialSTATE, onSubmit }) => {
   const initialValues = {
     name: initialSTATE?.name ?? "",
@@ -85,7 +85,7 @@ const Form = ({ loading, initialSTATE, onSubmit }) => {
           </div>
         </div>
 
-        <div className="flex gap-20">
+        {/* <div className="flex gap-20">
           <label
             htmlFor="gender"
             className="block text-sm font-medium leading-6 text-white"
@@ -114,7 +114,7 @@ const Form = ({ loading, initialSTATE, onSubmit }) => {
               <label className="text-white">Male</label>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div>
           <button
