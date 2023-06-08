@@ -52,12 +52,16 @@ export const updateUser = createAsyncThunk(
   "updateUser",
   async (data, { rejectWithValue }) => {
     try {
+      console.log(data, "data");
       const response = await axios.put(
         `https://641dd63d945125fff3d75742.mockapi.io/crud/${data.id}`,
         data
       );
+
+      console.log(response.data, "response.data");
       return response.data;
     } catch (error) {
+      console.log(error, "error");
       return rejectWithValue(error.response.data);
     }
   }
