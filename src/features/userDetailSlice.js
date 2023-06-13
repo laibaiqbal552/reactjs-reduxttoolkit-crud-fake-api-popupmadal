@@ -6,10 +6,11 @@ export const createUser = createAsyncThunk(
   "createUser",
   async (data, { rejectWithValue }) => {
     try {
-      console.log(data, "data");
+      const ApiData = { data };
+      console.log(ApiData, "data");
       const response = await axios.post(
         "http://localhost:1337/api/employees",
-        data
+        ApiData
       );
       console.log(response.data, "response.data");
       return response.data;
@@ -53,10 +54,11 @@ export const deleteUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   "updateUser",
   async (data, { rejectWithValue }) => {
+    const ApiData = { data };
     try {
       const response = await axios.put(
         `http://localhost:1337/api/employees/${data.id}`,
-        data
+        ApiData
       );
 
       return response.data;

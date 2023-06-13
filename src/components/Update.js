@@ -13,8 +13,8 @@ const Update = () => {
   const navigate = useNavigate();
 
   const { users, loading } = useSelector((state) => state.app);
-  const singleUser = users.find((item) => item.id === id);
-  console.log(users, "single");
+  const singleUser = users.find((item) => item.id == id);
+  console.log(singleUser, "single");
   const handleUpdate = (values) => {
     dispatch(updateUser({ ...values, id }));
     if (!loading) {

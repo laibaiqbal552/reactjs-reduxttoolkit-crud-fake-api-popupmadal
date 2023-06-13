@@ -4,10 +4,10 @@ import { useFormik } from "formik";
 import { validationSchema } from "./../validationSchema";
 const Form = ({ loading, initialSTATE, onSubmit }) => {
   const initialValues = {
-    name: initialSTATE?.name ?? "",
-    email: initialSTATE?.email ?? "",
-    age: initialSTATE?.age ?? "",
-    gender: initialSTATE?.gender ?? "",
+    name: initialSTATE?.attributes?.name ?? "",
+    email: initialSTATE?.attributes?.email ?? "",
+    age: initialSTATE?.attributes?.age ?? "",
+    // gender: initialSTATE?.attributes?.gender ?? "",
   };
   const { handleSubmit, setValues, getFieldProps, touched, errors } = useFormik(
     { initialValues, validationSchema: validationSchema, onSubmit: onSubmit }

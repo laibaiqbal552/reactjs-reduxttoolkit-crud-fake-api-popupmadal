@@ -18,9 +18,9 @@ const Create = () => {
     console.log(values);
     dispatch(createUser(values));
     // setModalOpen(true);
-    setTimeout(() => {
-      navigate("/read");
-    }, 3000);
+    // setTimeout(() => {
+    //   navigate("/read");
+    // }, 3000);
   };
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col justify-center px-6 py-12 lg:px-8">

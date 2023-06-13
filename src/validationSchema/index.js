@@ -14,5 +14,5 @@ export const validationSchema = Yup.object({
     .max(99, "Age must be at most 99")
     .positive("Age must be a positive number"),
 
-  gender: Yup.string().required("Gender is required"),
+  // gender: Yup.string().required("Gender is required"),
 });
